@@ -1,17 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import { Normalize } from 'styled-normalize';
+import App from "./App";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+  }
+`;
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+document.addEventListener("DOMContentLoaded", () => {
+  ReactDOM.render(
+    <Router>
+      <Normalize />
+      <GlobalStyle />
+      <Route path="/" component={App} />
+    </Router>,
+    document.body.appendChild(document.createElement("div"))
+  );
+});
